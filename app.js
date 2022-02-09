@@ -55,13 +55,35 @@ console.log(commandLineArgs);*/
 //     console.log('Portfolio complete! Check out index.html to see the output!');
 // })
 
+// const inquirer = require('inquirer');
+// inquirer
+//     .prompt([
+//         {
+//             type: 'input',
+//             name: 'name',
+//             message: 'What is your name?'
+//         }
+//     ])
+//     .then(answers => console.log(answers))
 const inquirer = require('inquirer');
-inquirer
-    .prompt([
-        {
-            type: 'input',
-            name: 'name',
-            message: 'What is your name?'
-        }
-    ])
-    .then(answers => console.log(answers))
+const promptUser = () => {
+    return inquirer.prompt([
+      {
+        type: 'input',
+        name: 'name',
+        message: 'What is your name?'
+    },
+    {
+      type: 'input',
+      name: 'github',
+      message: 'Enter your GitHub Username'
+    },
+    {
+      type: 'input',
+      name: 'about',
+      message: 'Provide some information about yourself:'
+    }
+    ]);
+  };
+  
+  promptUser().then(answers => console.log(answers));
