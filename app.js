@@ -95,9 +95,22 @@ const promptUser = () => {
             }
         },
         {
+            type: 'confirm',
+            name: 'confirmAbout',
+            message: 'Would you like to enter some information about yourself for an "About" section?',
+            default: true
+        },
+        {
             type: 'input',
             name: 'about',
-            message: 'Provide some information about yourself:'
+            message: 'Provide some information about yourself:',
+            when: ({ confirmAbout }) => {
+                if (confirmAbout) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
         }
     ]);
 };
@@ -117,7 +130,7 @@ Add a New Project
             type: 'input',
             name: 'name',
             message: 'What is your name of your project',
-            validate:projectInput => {
+            validate: projectInput => {
                 if (projectInput) {
                     return true;
                 } else {
@@ -130,7 +143,7 @@ Add a New Project
             type: 'input',
             name: 'description',
             message: 'Provide a description of the project (Required)',
-            validate:descriptionInput => {
+            validate: descriptionInput => {
                 if (descriptionInput) {
                     return true;
                 } else {
@@ -149,7 +162,7 @@ Add a New Project
             type: 'input',
             name: 'link',
             message: 'Enter the GitHub link to your project. (Required)',
-            validate:linkInput => {
+            validate: linkInput => {
                 if (linkInput) {
                     return true;
                 } else {
