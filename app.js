@@ -39,18 +39,29 @@ console.log(commandLineArgs);*/
 // const name = profileDataArgs[0];
 // const github = profileDataArgs[1];
 //assignment destructuring.
-const fs = require('fs');
+// const fs = require('fs');
 
-const profileDataArgs = process.argv.slice(2, process.argv.length);
+// //const profileDataArgs = process.argv.slice(2, process.argv.length);
 
-const[name, github] = profileDataArgs;
+// const[name, github] = profileDataArgs;
 
-const generatePage = require('./src/paage-template');
-// console.log(name, github);
-// console.log(generatePage(name, github));
+// const generatePage = require('./src/paage-template');
+// // console.log(name, github);
+// // console.log(generatePage(name, github));
 
-fs.writeFile('index.html', generatePage(name, github), err => {
-    if(err) throw err;
+// fs.writeFile('index.html', generatePage(name, github), err => {
+//     if(err) throw err;
 
-    console.log('Portfolio complete! Check out index.html to see the output!');
-})
+//     console.log('Portfolio complete! Check out index.html to see the output!');
+// })
+
+const inquirer = require('inquirer');
+inquirer
+    .prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: 'What is your name?'
+        }
+    ])
+    .then(answers => console.log(answers))
