@@ -65,6 +65,10 @@ console.log(commandLineArgs);*/
 //         }
 //     ])
 //     .then(answers => console.log(answers))
+
+const fs = require('fs');
+const generatePage = require('./src/paage-template.js');
+
 const inquirer = require('inquirer');
 const promptUser = () => {
     return inquirer.prompt([
@@ -201,5 +205,11 @@ Add a New Project
 promptUser()
     .then(promptProject)
     .then(portfolioData => {
-        console.log(portfolioData);
+        const pageHTML = generatePage(portfolioData);
+
+        fs.writeFile('./index.html', pageHTML, err => {
+            if (err) throw new Error(err);
+
+            console.log('Page created! Check out index.html in this directory to see it!');
+        });
     });
